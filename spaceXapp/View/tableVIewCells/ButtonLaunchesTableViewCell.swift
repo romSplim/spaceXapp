@@ -10,12 +10,15 @@ import UIKit
 class ButtonLaunchesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var showLauchesButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        showLauchesButton.backgroundColor = .darkGray
+        showLauchesButton.backgroundColor = UIColor(red: 0.13, green: 0.13, blue: 0.13, alpha: 1)
         showLauchesButton.layer.cornerRadius = self.bounds.height / 6
         showLauchesButton.setTitle("Посмотреть запуски", for: .normal)
-        showLauchesButton.tintColor = .white
+        showLauchesButton.titleLabel?.font = UIFont(name: "LabGrotesque-Bold", size: 18)
+        showLauchesButton.tintColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
+        
         contentView.backgroundColor = .black
     }
 
@@ -24,5 +27,4 @@ class ButtonLaunchesTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
 }

@@ -9,9 +9,14 @@ import UIKit
 
 class CollectionViewInCell: UITableViewCell {
 
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        collectionView.register(UINib(nibName: "RoundedRectCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "RoundedRectCollectionViewCell")
+        collectionView.showsHorizontalScrollIndicator = false
+        contentView.backgroundColor = .black
+        collectionView.backgroundColor = .black
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -19,5 +24,4 @@ class CollectionViewInCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
 }

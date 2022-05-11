@@ -10,7 +10,7 @@ import UIKit
 
 final class StretchyHeader: UIView {
     
-    public let imageView: UIImageView = {
+    let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
@@ -30,7 +30,6 @@ final class StretchyHeader: UIView {
     private var containerView = UIView()
     private var containerViewHeight = NSLayoutConstraint()
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         createViews()
@@ -48,7 +47,6 @@ final class StretchyHeader: UIView {
     }
     
     func setViewConstraints() {
-        
         blackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([widthAnchor.constraint(equalTo: containerView.widthAnchor),
@@ -57,7 +55,7 @@ final class StretchyHeader: UIView {
                                      blackView.leadingAnchor.constraint(equalTo: imageView.leadingAnchor,constant: -1),
                                      blackView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor,constant: 1),
                                      blackView.heightAnchor.constraint(equalToConstant: 40),
-                                     blackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)])
+                                     blackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 1)])
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -70,10 +68,9 @@ final class StretchyHeader: UIView {
         imageViewBottom.isActive = true
         imageViewHeight = imageView.heightAnchor.constraint(equalTo: containerView.heightAnchor)
         imageViewHeight.isActive = true
-        
     }
     
-    public func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
         containerViewHeight.constant = scrollView.contentInset.top
         let offsetY = -(scrollView.contentOffset.y + scrollView.contentInset.top)
 //        print(scrollView.contentOffset.y + scrollView.contentInset.top)
@@ -81,9 +78,4 @@ final class StretchyHeader: UIView {
         imageViewBottom.constant = offsetY >= 0 ? 0 : -offsetY / 2
         imageViewHeight.constant = max(offsetY + scrollView.contentInset.top, scrollView.contentInset.top)
     }
-    
-    
-    
-    
-    
 }

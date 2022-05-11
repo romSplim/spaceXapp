@@ -8,16 +8,52 @@
 import UIKit
 
 class TonAndSecTableViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var textLbl: UILabel!
+    @IBOutlet weak var valueLbl: UILabel!
+    @IBOutlet weak var unitLbl: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        contentView.backgroundColor = .black
+        textLbl.sizeToFit()
+        valueLbl.sizeToFit()
+        
+        textLbl.font = UIFont(name: "LabGrotesque-Regular", size: 16)
+        valueLbl.font = UIFont(name: "LabGrotesque-Bold", size: 16)
+        unitLbl.font = UIFont(name: "LabGrotesque-Bold", size: 16)
+        textLbl.textColor = UIColor(red: 0.79, green: 0.79, blue: 0.79, alpha: 1)
+        valueLbl.textColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
+        unitLbl.textColor = UIColor(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)
     }
     
+    func fetchCellWithData(model: RocketElement, indexPath: IndexPath) {
+        let textForOtherSection = ["Количество двигателей","Количество топлива","Время сгорания"]
+
+        if indexPath.section == 3 {
+            let firstStage = model.firstStage
+            let valuesForOtherSections: [Any] = [firstStage.engines, firstStage.fuelAmountTons,firstStage.burnTimeSEC ?? 0]
+            textLbl.text = textForOtherSection[indexPath.row]
+            valueLbl.text = "\(valuesForOtherSections[indexPath.row])"
+            hideUnitsLbl(arr: textForOtherSection)
+            
+            
+        } else if indexPath.section == 4 {
+            let secondStage = model.secondStage
+            let valuesForOtherSections: [Any] = [secondStage.engines, secondStage.fuelAmountTons, secondStage.burnTimeSEC ?? 0]
+            textLbl.text = textForOtherSection[indexPath.row]
+            valueLbl.text = "\(valuesForOtherSections[indexPath.row])"
+            hideUnitsLbl(arr: textForOtherSection)
+        }
+    }
+    
+    func hideUnitsLbl(arr: [String]) {
+        if textLbl.text == arr[0] {
+            unitLbl.text = ""
+        } else if textLbl.text == arr[1] {
+            unitLbl.text = "ton"
+        } else if textLbl.text == arr[2] {
+            unitLbl.text = "sec"
+        }
+    }
 }

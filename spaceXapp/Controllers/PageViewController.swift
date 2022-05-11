@@ -28,13 +28,13 @@ class PageViewController: UIPageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupNavBarAppearence()
         
         NetworkService.shared.getRequest { [weak self] data, error in
             if let data = data {
                 DispatchQueue.main.async {
                     self?.source = data.shuffled()
-                    self?.setup(data: self!.source!)
+                    self?.setupChildViewControllers(data: self!.source!)
                     self?.style()
                     self?.layout()
                 }
@@ -42,9 +42,34 @@ class PageViewController: UIPageViewController {
             }
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        super.viewWillAppear(animated)
+    }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(animated)
+    } 
+    
+    func setupNavBarAppearence(){
+        if #available(iOS 15, *) {
+            guard let navigationBar = navigationController?.navigationBar else { return }
+            
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground() // use `configureWithTransparentBackground` for transparent background
+            navigationBar.barTintColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
+//            appearance.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+            appearance.shadowColor = .clear
+//            appearance.shadowImage = UIImage()
+            
+            navigationBar.standardAppearance = appearance
+            navigationBar.scrollEdgeAppearance = appearance
+        }
+    }
     //MARK: - Private Methods
-    private func setup(data: [RocketElement]) {
+    private func setupChildViewControllers(data: [RocketElement]) {
         dataSource = self
         delegate = self
 //        pageControl.addTarget(self, action: #selector(pageControlTapped(_:)), for: .valueChanged)
@@ -55,16 +80,6 @@ class PageViewController: UIPageViewController {
 
         }
         
-//        let page1 = ViewController()
-//        let page2 = ViewController()
-//        let page3 = ViewController()
-//        let page4 = ViewController()
-//
-//        pages.append(page1)
-//        pages.append(page2)
-//        pages.append(page3)
-//        pages.append(page4)
-        
         setViewControllers([pages[initialPage]], direction: .forward, animated: true)
         
     }
@@ -74,7 +89,7 @@ class PageViewController: UIPageViewController {
         
         NSLayoutConstraint.activate([
             pageControl.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            pageControl.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1),
+            pageControl.heightAnchor.constraint(equalToConstant: 50),
             pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             pageControl.trailingAnchor.constraint(equalTo: view.trailingAnchor)
             ])
@@ -83,6 +98,7 @@ class PageViewController: UIPageViewController {
     
     private func style() {
         pageControl.translatesAutoresizingMaskIntoConstraints = false
+        pageControl.backgroundColor = UIColor(red: 0.07, green: 0.07, blue: 0.07, alpha: 1)
         pageControl.currentPageIndicatorTintColor = UIColor(named: "textColor")
         pageControl.pageIndicatorTintColor = .systemGray2
         pageControl.numberOfPages = pages.count

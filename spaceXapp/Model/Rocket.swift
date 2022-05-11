@@ -30,21 +30,21 @@ struct RocketElement: Codable {
         case successRatePct = "success_rate_pct"
         case firstFlight = "first_flight"
         case country, company, id
-        
     }
 }
 
 struct Diameter: Codable {
     let meters, feet: Double?
 }
+
 struct Mass: Codable {
     let kg, lb: Int
 }
+
 struct PayloadWeight: Codable {
     let id, name: String
     let kg, lb: Int
 }
-
 
 struct FirstStage: Codable {
     let engines: Int
