@@ -19,8 +19,8 @@ class RocketInfoTableViewCell: UITableViewCell {
         valueLbl.sizeToFit()
         textLbl.font = UIFont(name: "LabGrotesque-Regular", size: 16)
         valueLbl.font = UIFont(name: "LabGrotesque-Regular", size: 16)
-        textLbl.textColor = UIColor(red: 0.79, green: 0.79, blue: 0.79, alpha: 1)
-        valueLbl.textColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
+        textLbl.textColor = .myColor2
+        valueLbl.textColor = .myColor
     }
     
     func convertDate(model: RocketElement) -> String {
@@ -59,7 +59,6 @@ class RocketInfoTableViewCell: UITableViewCell {
             return "$\(Int(round(billion*10)/10)) млрд"
         } else if million >= 1.0 {
             return "$\(Int(round(million*10)/10)) млн"
-            
         } else if thousand >= 1.0 {
             return "$\(Int(round(thousand*10)/10)) тыс"
         } else {
@@ -69,7 +68,6 @@ class RocketInfoTableViewCell: UITableViewCell {
     
     func countryName(countries: [String: String], model: RocketElement) -> String? {
         let key = model.country
-//        let country = countries[key]
         return countries[key]
     }
 }

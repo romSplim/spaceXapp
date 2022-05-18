@@ -79,3 +79,5 @@ final class StretchyHeader: UIView {
         imageViewHeight.constant = max(offsetY + scrollView.contentInset.top, scrollView.contentInset.top)
     }
 }
+
+

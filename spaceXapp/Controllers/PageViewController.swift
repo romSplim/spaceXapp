@@ -72,8 +72,6 @@ class PageViewController: UIPageViewController {
     private func setupChildViewControllers(data: [RocketElement]) {
         dataSource = self
         delegate = self
-//        pageControl.addTarget(self, action: #selector(pageControlTapped(_:)), for: .valueChanged)
-        
         
         for currentData in 0..<source!.count {
             pages.append(ViewController(data: (source?[currentData])!))

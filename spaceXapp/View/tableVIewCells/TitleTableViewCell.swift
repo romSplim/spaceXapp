@@ -11,12 +11,11 @@ class TitleTableViewCell: UITableViewCell {
 
     @IBOutlet weak var rocketNameLbl: UILabel!
     @IBOutlet weak var settingsButton: UIButton!
-    let myTintColor = UIColor(red: 0.79, green: 0.79, blue: 0.79, alpha: 1)
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        settingsButton.setImage(UIImage(named: "gearIcon")?.withTintColor(myTintColor), for: .normal)
+        settingsButton.setImage(UIImage(named: "gearIcon")?.withTintColor(.myColor2), for: .normal)
         rocketNameLbl.font = UIFont(name: "LabGrotesque-Medium", size: 24)
         selectionStyle = .none
         rocketNameLbl.textColor = .white

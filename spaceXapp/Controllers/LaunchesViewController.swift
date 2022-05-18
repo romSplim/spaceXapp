@@ -49,7 +49,7 @@ class LaunchesViewController: UIViewController {
         setupNavBar()
         
         title = rocketName
-        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        view.backgroundColor = .black
         tableView.register(UINib(nibName: "LaunchesTableViewCell", bundle: nil), forCellReuseIdentifier: "LaunchesTableViewCell")
         
     }
@@ -84,7 +84,7 @@ class LaunchesViewController: UIViewController {
     func setupNavBar() {
         self.navigationController?.navigationBar.isTranslucent = false
         navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.tintColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
+        navigationController?.navigationBar.tintColor = .myColor
         navigationController?.navigationBar.backItem?.title = "Назад"
     }
     

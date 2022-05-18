@@ -22,9 +22,9 @@ class TonAndSecTableViewCell: UITableViewCell {
         textLbl.font = UIFont(name: "LabGrotesque-Regular", size: 16)
         valueLbl.font = UIFont(name: "LabGrotesque-Bold", size: 16)
         unitLbl.font = UIFont(name: "LabGrotesque-Bold", size: 16)
-        textLbl.textColor = UIColor(red: 0.79, green: 0.79, blue: 0.79, alpha: 1)
-        valueLbl.textColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
-        unitLbl.textColor = UIColor(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)
+        textLbl.textColor = .myColor2
+        valueLbl.textColor = .myColor
+        unitLbl.textColor = .myLightGray
     }
     
     func fetchCellWithData(model: RocketElement, indexPath: IndexPath) {
@@ -36,8 +36,6 @@ class TonAndSecTableViewCell: UITableViewCell {
             textLbl.text = textForOtherSection[indexPath.row]
             valueLbl.text = "\(valuesForOtherSections[indexPath.row])"
             hideUnitsLbl(arr: textForOtherSection)
-            
-            
         } else if indexPath.section == 4 {
             let secondStage = model.secondStage
             let valuesForOtherSections: [Any] = [secondStage.engines, secondStage.fuelAmountTons, secondStage.burnTimeSEC ?? 0]

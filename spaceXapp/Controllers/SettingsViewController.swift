@@ -7,9 +7,25 @@
 
 import UIKit
 
+protocol SegmentDelegate: AnyObject {
+    func didSelectHeightSegment(_ selectedIndex: String)
+    func didSelectDiametrSegment(_ selectedIndex: String)
+    func didSelectMassSegment(_ selectedIndex: String)
+    func didSelectPayloadSegment(_ selectedIndex: String)
+}
+
 class SettingsViewController: UIViewController {
+   
+    weak var delegate: SegmentDelegate?
     
-    var completion: ((String?, String?, String?, String?) -> ())?
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+        setupConstraints()
+        addTargetsToSegment()
+        setupRightBarButton()
+        view.backgroundColor = UIColor(red: 0.07, green: 0.07, blue: 0.07, alpha: 1)
+    }
     
     lazy var labelStackView: UIStackView = {
         let stack = UIStackView()
@@ -18,9 +34,9 @@ class SettingsViewController: UIViewController {
         stack.spacing = 40
         stack.distribution = .fillEqually
         stack.translatesAutoresizingMaskIntoConstraints = false
-        [heightLbl,diameterLbl,massLbl,payloadLbl].forEach {
-            $0.textColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
-            stack.addArrangedSubview($0) }
+        [heightLbl,diameterLbl,massLbl,payloadLbl].forEach { lbl in
+            lbl.textColor = .myColor
+            stack.addArrangedSubview(lbl) }
         return stack
     }()
     
@@ -34,20 +50,17 @@ class SettingsViewController: UIViewController {
         [heightSegment, diameterSegment, massSegment, payloadSegment].forEach {
             $0.selectedSegmentTintColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
             let titleAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 0.07, green: 0.07, blue: 0.07, alpha: 1)]
-            let titleAttributesNormal = [NSAttributedString.Key.foregroundColor: UIColor(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)]
+            let titleAttributesNormal = [NSAttributedString.Key.foregroundColor: UIColor.myLightGray]
             $0.setTitleTextAttributes(titleAttributes, for: .selected)
             $0.setTitleTextAttributes(titleAttributesNormal, for: .normal)
             stack.addArrangedSubview($0) }
         return stack
     }()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    
+    func setupView() {
         title = "Настройки"
-        setupConstraints()
-        addTargetsToSegment()
-        setupRightBarButton()
-        view.backgroundColor = UIColor(red: 0.07, green: 0.07, blue: 0.07, alpha: 1)
     }
     
     func setupRightBarButton() {
@@ -61,10 +74,10 @@ class SettingsViewController: UIViewController {
     }
     
     func addTargetsToSegment() {
-        heightSegment.addTarget(self, action: #selector(heightSegmentTapped(sender:)), for: .valueChanged)
-        diameterSegment.addTarget(self, action: #selector(diameterSegmentTapped(sender:)), for: .valueChanged)
-        massSegment.addTarget(self, action: #selector(massSegmentTapped(sender:)), for: .valueChanged)
-        payloadSegment.addTarget(self, action: #selector(payloadSegmentTapped(sender:)), for: .valueChanged)
+        heightSegment.addTarget(self, action: #selector(segmentTapped(sender:)), for: .valueChanged)
+        diameterSegment.addTarget(self, action: #selector(segmentTapped(sender:)), for: .valueChanged)
+        massSegment.addTarget(self, action: #selector(segmentTapped(sender:)), for: .valueChanged)
+        payloadSegment.addTarget(self, action: #selector(segmentTapped(sender:)), for: .valueChanged)
     }
     
     func setupConstraints() {
@@ -82,37 +95,22 @@ class SettingsViewController: UIViewController {
                                      segmentStackView.centerYAnchor.constraint(equalTo: labelStackView.centerYAnchor)])
     }
     
-    @objc func heightSegmentTapped(sender: UISegmentedControl!) {
-        if sender.selectedSegmentIndex == 0 {
-            completion?("m",nil,nil,nil)
-        } else {
-            completion?("ft",nil,nil,nil)
+    @objc func segmentTapped(sender: UISegmentedControl!) {
+        guard let selectedIndex = sender.titleForSegment(at: sender.selectedSegmentIndex) else { return }
+        switch sender {
+        case heightSegment:
+            self.delegate?.didSelectHeightSegment(selectedIndex)
+        case diameterSegment:
+            self.delegate?.didSelectDiametrSegment(selectedIndex)
+        case massSegment:
+            self.delegate?.didSelectMassSegment(selectedIndex)
+        case payloadSegment:
+            self.delegate?.didSelectPayloadSegment(selectedIndex)
+        default:
+            break
         }
     }
     
-    @objc func diameterSegmentTapped(sender: UISegmentedControl!) {
-        if sender.selectedSegmentIndex == 0 {
-            completion?(nil,"m",nil,nil)
-        } else {
-            completion?(nil,"ft",nil,nil)
-        }
-    }
-    
-    @objc func massSegmentTapped(sender: UISegmentedControl!) {
-        if sender.selectedSegmentIndex == 0 {
-            completion?(nil,nil,"kg",nil)
-        } else {
-            completion?(nil,nil,"lb",nil)
-        }
-    }
-    
-    @objc func payloadSegmentTapped(sender: UISegmentedControl!) {
-        if sender.selectedSegmentIndex == 0 {
-            completion?(nil,nil,nil,"kg")
-        } else {
-            completion?(nil,nil,nil,"lb")
-        }
-    }
     
     let heightLbl: UILabel = {
         let lbl = UILabel()

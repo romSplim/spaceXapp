@@ -32,6 +32,12 @@
 		9597384727F972BD00D2794E /* CollectionViewInCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9597384527F972BD00D2794E /* CollectionViewInCell.xib */; };
 		9597384C27F974E100D2794E /* RoundedRectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9597384A27F974E100D2794E /* RoundedRectCollectionViewCell.swift */; };
 		9597384D27F974E100D2794E /* RoundedRectCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9597384B27F974E100D2794E /* RoundedRectCollectionViewCell.xib */; };
+		95A00AA12832B69B00B42847 /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A00AA02832B69B00B42847 /* Measure.swift */; };
+		95A0AAEB28337CEF00465740 /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A0AAEA28337CEF00465740 /* Unit.swift */; };
+		95A0AAED2833888100465740 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A0AAEC2833888100465740 /* UIColor+Extension.swift */; };
+		95A3CA9428327E9E00B6FA87 /* HeaderForSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A3CA9328327E9E00B6FA87 /* HeaderForSection.swift */; };
+		95A3CA962832885F00B6FA87 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A3CA952832885F00B6FA87 /* ViewController+Extension.swift */; };
+		95A3CA9828328A7500B6FA87 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A3CA9728328A7500B6FA87 /* UITableView+Extension.swift */; };
 		95C0866C280C238700B1DB71 /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C0866B280C238700B1DB71 /* Launch.swift */; };
 		95C08671280CAC6000B1DB71 /* LabGrotesque-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95C08670280CAB9600B1DB71 /* LabGrotesque-Medium.ttf */; };
 		95C08673280CAC8400B1DB71 /* LabGrotesque-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95C08672280CAC8400B1DB71 /* LabGrotesque-Regular.ttf */; };
@@ -67,6 +73,12 @@
 		9597384527F972BD00D2794E /* CollectionViewInCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewInCell.xib; sourceTree = "<group>"; };
 		9597384A27F974E100D2794E /* RoundedRectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectCollectionViewCell.swift; sourceTree = "<group>"; };
 		9597384B27F974E100D2794E /* RoundedRectCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoundedRectCollectionViewCell.xib; sourceTree = "<group>"; };
+		95A00AA02832B69B00B42847 /* Measure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
+		95A0AAEA28337CEF00465740 /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
+		95A0AAEC2833888100465740 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		95A3CA9328327E9E00B6FA87 /* HeaderForSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderForSection.swift; sourceTree = "<group>"; };
+		95A3CA952832885F00B6FA87 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		95A3CA9728328A7500B6FA87 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		95C0866B280C238700B1DB71 /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
 		95C08670280CAB9600B1DB71 /* LabGrotesque-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Medium.ttf"; sourceTree = "<group>"; };
 		95C08672280CAC8400B1DB71 /* LabGrotesque-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Regular.ttf"; sourceTree = "<group>"; };
@@ -100,6 +112,9 @@
 			isa = PBXGroup;
 			children = (
 				9596E3DA280EB90800E9C3EE /* Int+Extension.swift */,
+				95A3CA952832885F00B6FA87 /* ViewController+Extension.swift */,
+				95A3CA9728328A7500B6FA87 /* UITableView+Extension.swift */,
+				95A0AAEC2833888100465740 /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -107,9 +122,10 @@
 		9585243A27F8B712000AD1B3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				958ED60B27F716FE003B3A4F /* StretchyHeader.swift */,
 				9597384827F9746C00D2794E /* tableVIewCells */,
 				9597384927F9748600D2794E /* collectionViewCells */,
+				958ED60B27F716FE003B3A4F /* StretchyHeader.swift */,
+				95A3CA9328327E9E00B6FA87 /* HeaderForSection.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -207,6 +223,8 @@
 			children = (
 				95FF02D627FC2D2500220AF2 /* Rocket.swift */,
 				95C0866B280C238700B1DB71 /* Launch.swift */,
+				95A00AA02832B69B00B42847 /* Measure.swift */,
+				95A0AAEA28337CEF00465740 /* Unit.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -291,22 +309,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95A3CA9428327E9E00B6FA87 /* HeaderForSection.swift in Sources */,
 				959346FF27F9F5630011D108 /* ButtonLaunchesTableViewCell.swift in Sources */,
 				9597384627F972BD00D2794E /* CollectionViewInCell.swift in Sources */,
 				958ED5FC27F710E1003B3A4F /* ViewController.swift in Sources */,
+				95A00AA12832B69B00B42847 /* Measure.swift in Sources */,
 				958ED5F827F710E1003B3A4F /* AppDelegate.swift in Sources */,
 				958ED60C27F716FE003B3A4F /* StretchyHeader.swift in Sources */,
 				9597384C27F974E100D2794E /* RoundedRectCollectionViewCell.swift in Sources */,
 				95814206280C0479002746FD /* LaunchesTableViewCell.swift in Sources */,
+				95A3CA962832885F00B6FA87 /* ViewController+Extension.swift in Sources */,
 				95910C82280807B80097EE06 /* PageViewController.swift in Sources */,
 				959346FB27F9E1540011D108 /* RocketInfoTableViewCell.swift in Sources */,
 				95C0866C280C238700B1DB71 /* Launch.swift in Sources */,
 				9585243F27F8B77A000AD1B3 /* TitleTableViewCell.swift in Sources */,
+				95A0AAEB28337CEF00465740 /* Unit.swift in Sources */,
+				95A0AAED2833888100465740 /* UIColor+Extension.swift in Sources */,
 				958ED5FA27F710E1003B3A4F /* SceneDelegate.swift in Sources */,
 				959054EA27FF3D4B0090BD93 /* SettingsViewController.swift in Sources */,
 				9596E3DB280EB90800E9C3EE /* Int+Extension.swift in Sources */,
 				9594C57427FC759000B810F0 /* NetworkService.swift in Sources */,
 				958A3590280DA84D00BA3F79 /* LaunchesViewController.swift in Sources */,
+				95A3CA9828328A7500B6FA87 /* UITableView+Extension.swift in Sources */,
 				9596E3D8280EA87700E9C3EE /* TonAndSecTableViewCell.swift in Sources */,
 				95FF02D727FC2D2500220AF2 /* Rocket.swift in Sources */,
 			);
